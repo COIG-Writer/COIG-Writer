@@ -104,18 +104,4 @@ Each triplet (`query`, `thought`, `answer`) captures **prompt-level intent**, **
 **COIG-Writer** is distributed under the [Open Data Commons Attribution License (ODC-BY)](https://opendatacommons.org/licenses/by/).  
 When using this dataset, please provide proper attribution.
 
----
 
-## 📚 Citation
-
-```bibtex
-@misc{coigwriter2025,
-  title        = {COIG-Writer: A High-Quality Dataset for Chinese Creative Writing with Thought Processes},
-  author       = {Yunwen Li and Shuangshuang Ying and Xingwei Qu and Xin Li and Sheng Jin and Minghao Liu and Zhoufutu Wen and Tianyu Zheng and Xeron Du and Qiguang Chen and Jiajun Shi and Wangchunshu Zhou and Jiazhan Feng and Wanjun Zhong and Chenghua Lin and Eli Zhang},
-  year         = {2025},
-  eprint       = {2503.xxxxx},
-  archivePrefix= {arXiv},
-  primaryClass = {cs.CL},
-  url          = {https://arxiv.org/abs/2503.xxxxx}
-}
-```
