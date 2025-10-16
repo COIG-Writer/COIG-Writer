@@ -2,7 +2,7 @@
 
 [🌐 Homepage](https://coig-writer.github.io/) · [🤗 Dataset](TODO) · [📖 ArXiv](TODO) · [🐙 GitHub](https://github.com/Juno6222222/COIG-Writer)
 
-This repository contains the dataset and evaluation code for the paper **COIG-Writer: A High-Quality Dataset for Chinese Creative Writing with Thought Processes**.
+This repository contains the dataset and supplementary materials for the paper **COIG-Writer: A High-Quality Dataset for Chinese Creative Writing with Thought Processes**.
 
 ---
 
@@ -10,18 +10,21 @@ This repository contains the dataset and evaluation code for the paper **COIG-Wr
 
 ![COIG-Writer Overview](images/DataCuration.png)
 
-**COIG-Writer** is a Chinese creative writing dataset that pairs final texts with their reasoning traces. Each sample is a triplet: a **reverse-engineered prompt**, a **reasoning process**, and the **final article**. The dataset contains **1,665** triplets across **51** genres and supports process-supervised training for narrative planning, style control, and instruction following.
+**COIG-Writer** is a large-scale Chinese creative writing dataset that links final literary texts with their corresponding reasoning and decision-making processes.  
+Each data instance consists of a **reverse-engineered writing prompt**, a **step-by-step reasoning trace**, and the **final text**.  
+This structure supports training and evaluation of models on process-level creative generation and narrative reasoning.
 
-Empirical findings:
-- Process supervision stabilizes gains when combined with general data at a **1:12** ratio.  
-- Creative ability is **language-specific** with limited cross-lingual transfer.  
-- Higher lexical diversity (**TTR**) does not always reflect better creative quality.
+The dataset includes **1,665** triplets across **51** genres such as novels, essays, poetry, and scripts.  
+It was curated through systematic reverse engineering of high-quality human-authored works, followed by manual validation.  
+
+Key insights:
+- Process supervision stabilizes generation when balanced with general data at a **1:12** ratio.  
+- Creative ability is **language-specific**, showing limited cross-lingual transfer.  
+- Higher lexical diversity (**TTR**) does not necessarily imply better creativity.
 
 ---
 
-## 🏆 Main Result
-
-**Dataset Statistics**
+## 🏆 Dataset Statistics
 
 | Metric | Value |
 |---|---|
@@ -45,32 +48,9 @@ Empirical findings:
 
 ---
 
-## 🔢 Dataset Format
+## ⚙️ Installation & Usage
 
-Each record is stored as a JSON object:
-
-```json
-{
-  "reverse_inspiration_prompt": "<prompt>",
-  "reasoning_process": "<step-by-step reasoning>",
-  "article": "<final text>",
-  "metadata": {
-    "genre": "fantasy_novel",
-    "quality_score": 55,
-    "creativity_score": 9
-  }
-}
-```
-
-**Fields**
-- **reverse_inspiration_prompt**: reconstructed writing instruction that could yield the article.  
-- **reasoning_process**: planning steps and decisions.  
-- **article**: final text.  
-- **metadata**: genre and human ratings.
-
----
-
-## ⚙️ Installation
+To download and explore the dataset:
 
 ```bash
 git clone https://github.com/Juno6222222/COIG-Writer.git
@@ -78,67 +58,20 @@ cd COIG-Writer
 pip install -r requirements.txt
 ```
 
----
+You can also load it directly via Hugging Face Datasets:
 
-## 🧠 Inference
-
-```bash
-export PYTHONPATH=$(pwd)
-
-python infer/infer.py \
-  --model_name <MODEL_NAME> \
-  --input data/coig_writer_test.jsonl \
-  --output results/pred.jsonl \
-  --mode zero-shot \
-  --batch_size 32
+```python
+from datasets import load_dataset
+dataset = load_dataset("m-a-p/COIG-Writer")
+print(dataset["train"][0])
 ```
-
-### Examples
-
-```bash
-# Zero-shot
-python infer/infer.py --model_name Qwen2.5-7B-Instruct \
-  --input data/coig_writer_test.jsonl \
-  --output results/pred.jsonl \
-  --mode zero-shot --batch_size 32
-
-# Five-shot
-python infer/infer.py --model_name DeepSeek-R1 \
-  --input data/coig_writer_test.jsonl \
-  --output results/pred.jsonl \
-  --mode five-shot --batch_size 8
-```
-
-### Notes
-- Interrupted runs save a `.jsonl.tmp` file for resuming.  
-- After inference, check the `response` field and re-run for any errors.
-
-### Custom Models
-1. Add a new file under `infer/models/`.  
-2. Register it in `infer/models/__init__.py`.
-
----
-
-## ⭐ Evaluation
-
-```bash
-export PYTHONPATH=$(pwd)
-
-python eval/eval.py \
-  --reference data/coig_writer_test.jsonl \
-  --prediction results/pred.jsonl \
-  --save_dir results_with_status \
-  --excel_output \
-  --json_output
-```
-
-Evaluation covers content quality, creativity, cultural alignment, instruction adherence, and overall preference.
 
 ---
 
 ## 📜 License
 
-**COIG-Writer** is released under the [Open Data Commons Attribution License (ODC-BY)](https://opendatacommons.org/licenses/by/). Please give proper attribution when using the dataset.
+**COIG-Writer** is distributed under the [Open Data Commons Attribution License (ODC-BY)](https://opendatacommons.org/licenses/by/).  
+When using this dataset, please provide proper attribution.
 
 ---
 
@@ -154,4 +87,4 @@ Evaluation covers content quality, creativity, cultural alignment, instruction a
   primaryClass = {cs.CL},
   url          = {TODO}
 }
-
+```
