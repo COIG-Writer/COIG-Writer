@@ -2,6 +2,13 @@
   <i>COIG-Writer</i>: A High-Quality Dataset for Chinese Creative Writing with Thought Processes
 </h2>
 
+<p align="center">
+  <a href="https://coig-writer.github.io/" style="margin: 0 10px;">🌐 Homepage</a> |
+  <a href="https://huggingface.co/datasets/m-a-p/COIG-Writer" style="margin: 0 10px;">🤗 Dataset</a> |
+  <a href="https://arxiv.org/abs/2503.xxxxx" style="margin: 0 10px;">📖 ArXiv</a> |
+  <a href="https://github.com/Juno6222222/COIG-Writer" style="margin: 0 10px;">🐙 GitHub</a>
+</p>
+
 This repository contains the dataset and supplementary materials for the paper **COIG-Writer: A High-Quality Dataset for Chinese Creative Writing with Thought Processes**.
 
 ---
@@ -55,7 +62,7 @@ Data were curated through systematic reverse engineering and manually validated 
 To download and explore the dataset:
 
 ```bash
-git clone https://anonymous.4open.science/r/COIG-Writer
+git clone https://github.com/Juno6222222/COIG-Writer.git
 cd COIG-Writer
 ```
 
@@ -63,7 +70,7 @@ You can also load it directly from Hugging Face:
 
 ```python
 from datasets import load_dataset
-dataset = load_dataset("COIG-Writer")
+dataset = load_dataset("m-a-p/COIG-Writer")
 print(dataset["train"][0])
 ```
 
@@ -97,4 +104,18 @@ Each triplet (`query`, `thought`, `answer`) captures **prompt-level intent**, **
 **COIG-Writer** is distributed under the [Open Data Commons Attribution License (ODC-BY)](https://opendatacommons.org/licenses/by/).  
 When using this dataset, please provide proper attribution.
 
+---
 
+## 📚 Citation
+
+```bibtex
+@misc{coigwriter2025,
+  title        = {COIG-Writer: A High-Quality Dataset for Chinese Creative Writing with Thought Processes},
+  author       = {Yunwen Li and Shuangshuang Ying and Xingwei Qu and Xin Li and Sheng Jin and Minghao Liu and Zhoufutu Wen and Tianyu Zheng and Xeron Du and Qiguang Chen and Jiajun Shi and Wangchunshu Zhou and Jiazhan Feng and Wanjun Zhong and Chenghua Lin and Eli Zhang},
+  year         = {2025},
+  eprint       = {2503.xxxxx},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.CL},
+  url          = {https://arxiv.org/abs/2503.xxxxx}
+}
+```
