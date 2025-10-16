@@ -64,7 +64,6 @@ To download and explore the dataset:
 ```bash
 git clone https://github.com/Juno6222222/COIG-Writer.git
 cd COIG-Writer
-pip install -r requirements.txt
 ```
 
 You can also load it directly from Hugging Face:
